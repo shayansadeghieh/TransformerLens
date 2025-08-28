@@ -53,7 +53,8 @@ class TransformerBridge(nn.Module):
     # Placing these on the main bridge ensures aliases like 'hook_embed' are available
     hook_aliases = {
         "hook_embed": "embed.hook_out",
-        "hook_pos_embed": "pos_embed.hook_out",
+        # rotary style models use rotary_emb.hook_out, but gpt2-style models use pos_embed.hook_out
+        "hook_pos_embed": ["pos_embed.hook_out", "rotary_emb.hook_out"],
         "hook_unembed": "unembed.hook_out",
     }
 
