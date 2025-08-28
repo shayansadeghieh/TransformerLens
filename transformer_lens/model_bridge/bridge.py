@@ -1277,7 +1277,8 @@ class TransformerBridge(nn.Module):
                         top_k=top_k,
                         top_p=top_p,
                         temperature=temperature,
-                        freq_penalty=freq_penalty,                    
+                        freq_penalty=freq_penalty,
+                        tokens=current_tokens,                    
                     ).to(self.cfg.device)
                 else:
                     # Greedy selection - pick most likely token
